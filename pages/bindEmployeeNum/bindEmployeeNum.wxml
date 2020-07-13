@@ -1,0 +1,26 @@
+<!--pages/bindEmployeeNum/bindEmployeeNum.wxml-->
+<view class="container">
+	<block wx:if="{{employeeNumber}}">
+		<mp-msg type="success" title="已绑定工号">
+			<view slot="desc">工号:{{employeeNumber}}</view>
+			<view wx:if="{{!type || type==='student' || type==='lecturer'}}" slot="extend">
+				<view>说明：需要更改请联系管理员</view>
+			</view>
+			<view wx:if="{{type || type==='admin'}}" slot="handle">
+				<button class="weui-btn" type="primary" bindtap="change">修改</button>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+		<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+			<mp-cells title="绑定工号">
+				<mp-cell show-error prop="employeeNumber" title="工号">
+					<input bindinput="formInputChange" data-field="employeeNumber" class="weui-input" placeholder="请输入工号" />
+				</mp-cell>
+			</mp-cells>
+		</mp-form>
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+		</view>
+	</block>
+</view>

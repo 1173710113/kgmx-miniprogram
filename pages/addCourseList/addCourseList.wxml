@@ -1,0 +1,14 @@
+<!--pages/addCourse/addCourse.wxml-->
+<view class="container">
+	<!--<mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>-->
+	<mp-cells>
+		<mp-cell wx:for="{{course}}" wx:key="id" link hover url="/pages/studentCourseInfo/studentCourseInfo?courseId={{item.id}}" footer="{{item.count}}已签到">
+			<image slot="icon" src="{{item.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+			<view class="courseinfo">
+				<text class="courseinfo-lecturername">{{item.lecturerName}}</text>
+				<text class="courseinfo-coursename">{{item.name}}</text>
+			</view>
+		</mp-cell>
+
+	</mp-cells>
+</view>

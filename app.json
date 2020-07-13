@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/course/course",
+    "pages/logs/logs",
+    "pages/addCourseList/addCourseList",
+    "pages/bindEmployeeNum/bindEmployeeNum",
+    "pages/bindUserType/bindUserType",
+    "pages/addCourseForm/addCourseForm",
+    "pages/courseInfo/courseInfo",
+    "pages/bindDepartment/bindDepartment",
+    "pages/studentCourseInfo/studentCourseInfo",
+    "pages/bindDescription/bindDescription",
+    "pages/teacherInfo/teacherInfo",
+    "pages/oneToOneTeacherList/oneToOneTeacherList",
+    "pages/appointment/appointment",
+    "pages/myAppointment/myAppointment",
+    "pages/appointmentInfo/appointmentInfo",
+    "pages/teacherAppointmentInfo/teacherAppointmentInfo",
+    "pages/agreeAppointment/agreeAppointment",
+    "pages/allStudent/allStudent",
+    "pages/studentInfo/studentInfo",
+    "pages/allTeacher/allTeacher",
+    "pages/adminTeacherInfo/adminTeacherInfo",
+    "pages/adminCourseInfo/adminCourseInfo",
+    "pages/adminChangeEmployeeNumber/adminChangeEmployeeNumber",
+    "pages/adminChangeDepartment/adminChangeDepartment",
+    "pages/changeNickName/changeNickName"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "text": "我的课程"
+      },
+      {
+        "pagePath":"pages/myAppointment/myAppointment",
+        "text":"我的预约"
+      }
+    ]
+  }
+}

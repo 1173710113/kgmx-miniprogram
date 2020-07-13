@@ -1,0 +1,29 @@
+<!--pages/studentCourseInfo/studentCourseInfo.wxml-->
+<wxs module="util" src="../../utils/util.wxs"></wxs>
+<view class="container">
+	<mp-cells>
+		<mp-cell footer="{{course.count}}已签到">			<image slot="icon" src="{{course.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+			<view class="courseinfo">
+				<text class="courseinfo-lecturername">{{course.lecturerName}}</text>
+				<text class="courseinfo-coursename">{{course.name}}</text>
+			</view>
+		</mp-cell>
+		<mp-cell>
+			<view class="courseinfo">
+				<text>预定时间:{{course.plannedStartTime}}</text>
+				<text>签到时间:{{course.signInTime}}</text>
+				<text wx:if="{{course.mySignInTime}}">我的签到时间:{{course.mySignInTime}}</text>
+				<text wx:if="{{course.startTime}}">开课时间:{{course.startTime}}</text>
+				<text wx:if="{{course.endTime}}">结束时间:{{course.endTime}}</text>
+				<text wx:if="{{course.endTime}}">课程时长:{{util.getSpan(course.startTime, course.endTime)}}分钟</text>
+				<text wx:if="{{course.endTime}}">我的上课时长:{{util.getStudentSpan(course.mySignInTime,course.startTime, course.endTime)}}分钟</text>
+			</view>
+		</mp-cell>
+	</mp-cells>
+
+	<view class="weui-btn-area">
+		<!--<button type="{{course.flag? 'warn': 'primary'}}" disabled="{{course.startTime||course.endTime}}" bindtap="submit">{{course.flag?'取消预约':'马上预约'}}</button> -->
+		<button type="default" bindtap="submit">签到提醒</button>
+			<button style="margin-top:25rpx" wx:if="{{course.flag}}" class="weui-btn" type="primary" disabled="{{course.mySignInTime || course.endTime}}" bindtap="signIn">{{course.mySignInTime? '已签到':'签到'}}</button>
+	</view>
+</view>

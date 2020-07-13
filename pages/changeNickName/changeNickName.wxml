@@ -1,0 +1,22 @@
+<!--pages/changeNickName/changeNickName.wxml-->
+<view class="container">
+	<block wx:if="{{nickName}}">
+		<mp-msg type="success" title="修改成功">
+			<view slot="handle">
+				<button class="weui-btn" type="primary" bindtap="back">完成</button>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+		<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+			<mp-cells title="修改昵称">
+				<mp-cell show-error prop="nickName" title="昵称">
+					<input bindinput="formInputChange" data-field="nickName" class="weui-input" placeholder="请输入昵称" />
+				</mp-cell>
+			</mp-cells>
+		</mp-form>
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+		</view>
+	</block>
+</view>

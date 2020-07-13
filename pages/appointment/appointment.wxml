@@ -1,0 +1,43 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="container">
+<block wx:if="{{isCreated}}">
+		<mp-msg type="success" title="预约成功">
+		<view slot="handle">
+            <button class="weui-btn" type="primary" bindtap="back">完成</button>
+        </view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+	<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+		<mp-cells>
+			<mp-cell show-error prop="name" title="姓名">
+				<input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名" />
+			</mp-cell>
+			<mp-cell show-error prop="job" title="岗位">
+				<input bindinput="formInputChange" data-field="job" class="weui-input" placeholder="请输入岗位" />
+			</mp-cell>
+			<mp-cell show-error prop="zone" title="网点">
+				<input bindinput="formInputChange" data-field="zone" class="weui-input" placeholder="请输入网点" />
+			</mp-cell>
+			<mp-cell show-error prop="startDate" title="开课日期">
+				<picker data-field="startDate" mode="date" value="{{startDate}}" bindchange="bindStartDateChange">
+					<view class="weui-input">{{startDate}}</view>
+				</picker>
+			</mp-cell>
+			<mp-cell show-error prop="startTime" title="开课时间">
+				<picker data-field="startTime" mode="time" value="{{startTime}}" bindchange="bindStartTimeChange">
+					<view class="weui-input">{{startTime}}</view>
+				</picker>
+			</mp-cell>
+			<mp-cell show-error prop="form" title="形式">
+				<picker data-field="form" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+					<view class="weui-input">{{multiArray[1][multiIndex[1]]}}</view>
+				</picker>
+			</mp-cell>
+		</mp-cells>
+	</mp-form>
+	<view class="weui-btn-area">
+		<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+	</view>
+	</block>
+</view>

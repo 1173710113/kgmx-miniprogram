@@ -1,0 +1,8 @@
+<!--pages/allStudent/allStudent.wxml-->
+<view class="container">
+  <mp-cells wx:for="{{student}}" title="{{item.departmentName}}">
+    <mp-cell wx:for="{{item.students}}" value="{{item.nickName}}" link hover url="/pages/studentInfo/studentInfo?id={{item.openId}}">
+    	<image slot="icon" src="{{item.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+    </mp-cell>
+  </mp-cells>
+</view>

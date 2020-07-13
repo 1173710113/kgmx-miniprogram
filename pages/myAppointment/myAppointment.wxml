@@ -1,0 +1,44 @@
+<!--pages/myAppointment/myAppointment.wxml-->
+<mp-tabs swiperItemClass="container" swiperStyle="height: {{scroll_height}}px" tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper" bindtabclick="onTabCLick" bindchange="onChange" activeClass="tab-bar-title__selected">
+
+	<view class="tab-content" slot="tab-content-0">
+		<mp-cells>
+			<mp-cell wx:for="{{unchecked}}" wx:key="appointment.id" link url="{{url[type]}}?id={{item.appointment.id}}" hover>
+				<image slot="title" src="{{type==='student'?(item.teacher.avatarUrl):(item.student.avatarUrl)}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text>{{type==='student'?(item.teacher.nickName):(item.student.nickName)}}</text>
+					<text class="courseinfo-lecturername">形式:{{item.appointment.form}}</text>
+					<text class="courseinfo-lecturername">开始:{{item.appointment.plannedStartTime}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+	<view class="tab-content" slot="tab-content-1">
+		<mp-cells>
+			<mp-cell wx:for="{{agree}}" wx:key="appointment.id" link hover  url="{{url[type]}}?id={{item.appointment.id}}" footer="{{item.appointment.startTime?(item.appointment.endTime?'已结束':'进行中'):'未开始'}}">
+				<image slot="title" src="{{type==='student'?(item.teacher.avatarUrl):(item.student.avatarUrl)}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text>{{type==='student'?(item.teacher.nickName):(item.student.nickName)}}</text>
+					<text class="courseinfo-lecturername">形式:{{item.appointment.form}}</text>
+					<text class="courseinfo-lecturername">开始:{{item.appointment.plannedStartTime}}</text>
+					<text class="courseinfo-lecturername">签到:{{item.appointment.signInTime}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+	<view class="tab-content" slot="tab-content-2">
+		<mp-cells>
+			<mp-cell wx:for="{{refuse}}" wx:key="appointment.id" link hover  url="{{url[type]}}?id={{item.appointment.id}}">
+				<image slot="title" src="{{type==='student'?(item.teacher.avatarUrl):(item.student.avatarUrl)}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text>{{type==='student'?(item.teacher.nickName):(item.student.nickName)}}</text>
+					<text class="courseinfo-lecturername">形式:{{item.appointment.form}}</text>
+					<text class="courseinfo-lecturername">开始:{{item.appointment.plannedStartTime}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+</mp-tabs>

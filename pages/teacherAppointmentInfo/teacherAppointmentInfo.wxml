@@ -1,0 +1,34 @@
+<!--pages/teacherAppointmentInfo/teacherAppointmentInfo.wxml-->
+<wxs module="util" src="../../utils/util.wxs"></wxs>
+<view class="container">
+	<mp-cells>
+		<mp-cell value="{{student.nickName}}" footer="{{stateMap[appointment.state]}}">
+			<image slot="icon" src="{{student.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+		</mp-cell>
+		<mp-cell>
+			<view style="flex-direction:column;display:flex;">
+        <text>姓名:{{appointment.studentName}}</text>
+        <text>岗位:{{appointment.studentJob}}</text>
+        <text>网点:{{appointment.studentBranch}}</text>
+        <text>形式:{{appointment.form}}</text>
+				<text>预约时间:{{appointment.plannedStartTime}}</text>
+        <text wx:if="{{appointment.signInTime}}">签到时间:{{appointment.signInTime}}</text>
+				<text wx:if="{{appointment.startTime}}">开始时间:{{appointment.startTime}}</text>
+				<text wx:if="{{appointment.endTime}}">结束时间:{{appointment.endTime}}</text>
+				<text wx:if="{{appointment.studentSignInTime}}">学生签到时间:{{appointment.studentSignInTime}}</text>
+				<text wx:if="{{appointment.endTime}}">学生上课时长:{{util.getStudentSpan(appointment.studentSignInTime, appointment.startTime, appointment.endTime)}}分钟</text>
+				<text wx:if="{{appointment.endTime}}">课程时长:{{util.getSpan(appointment.startTime, appointment.endTime)}}分钟</text>
+			</view>
+		</mp-cell>
+		</mp-cells>
+
+    <view wx:if="{{appointment && appointment.state==='unchecked'}}" class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="agree">同意</button>
+      <button class="weui-btn" type="default" bindtap="refuse">拒绝</button>
+		</view>
+
+		<view wx:if="{{appointment && appointment.state==='agree'}}" class="weui-btn-area">
+			<button class="weui-btn" type="{{appointment.startTime? 'default':'primary'}}" bindtap="startOrEnd" disabled="{{appointment.endTime}}">{{appointment.endTime? '已结束' : (appointment.startTime?'结束':'开始')}}</button>
+		</view>
+
+</view>

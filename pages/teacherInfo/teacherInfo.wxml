@@ -1,0 +1,18 @@
+<!--pages/teacherInfo/teacherInfo.wxml-->
+<view class="container">
+  <mp-cells>
+    <mp-cell footer="{{teacher.level + userTypeMap[teacher.type]}}" value="{{teacher.nickName}}">
+      	<image slot="icon" src="{{teacher.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+    </mp-cell>
+  </mp-cells>
+
+  <mp-cells title="简介">
+    <mp-cell value="{{teacher.brief}}">
+    </mp-cell>
+  </mp-cells>
+
+  	<view  wx:if="{{type && type==='student'}}" class="weui-btn-area">
+		<button type="primary" bindtap="gotoAppointment">{{'马上预约'}}</button>
+	</view>
+</view>
+

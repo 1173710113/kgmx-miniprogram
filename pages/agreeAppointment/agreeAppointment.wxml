@@ -1,0 +1,39 @@
+<!--pages/agreeAppointment/agreeAppointment.wxml-->
+<view class="container">
+	<block wx:if="{{isCreated}}">
+		<mp-msg type="success" title="审核成功">
+		<view slot="handle">
+				<button class="weui-btn" type="primary" bindtap="back">完成</button>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+  <mp-form>
+			<mp-cells>
+				<mp-cell prop="startDate" title="开课日期">
+					<picker data-field="startDate" mode="date" value="{{startDate}}" bindchange="bindStartDateChange">
+						<view class="weui-input">{{startDate}}</view>
+					</picker>
+				</mp-cell>
+				<mp-cell prop="startTime" title="开课时间">
+					<picker data-field="startTime" mode="time" value="{{startTime}}" bindchange="bindStartTimeChange">
+						<view class="weui-input">{{startTime}}</view>
+					</picker>
+				</mp-cell>
+					<mp-cell prop="signInDate" title="签到日期">
+					<picker data-field="signInDate" mode="date" value="{{signInDate}}" bindchange="bindSignInDateChange">
+						<view class="weui-input">{{signInDate}}</view>
+					</picker>
+				</mp-cell>
+				<mp-cell prop="signInTime" title="签到时间">
+					<picker data-field="signInTime" mode="time" value="{{signInTime}}" bindchange="bindSignInTimeChange">
+						<view class="weui-input">{{signInTime}}</view>
+					</picker>
+				</mp-cell>
+			</mp-cells>
+      </mp-form>
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+		</view>
+	</block>
+</view>

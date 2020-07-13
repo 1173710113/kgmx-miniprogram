@@ -1,0 +1,8 @@
+<!--pages/allTeacher/allTeacher.wxml-->
+<view class="container">
+  <mp-cells>
+    <mp-cell wx:for="{{teacher}}" value="{{item.nickName}}" link hover footer="{{item.level}}" url="/pages/adminTeacherInfo/adminTeacherInfo?id={{item.openId}}">
+    	<image slot="icon" src="{{item.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+    </mp-cell>
+  </mp-cells>
+</view>

@@ -1,0 +1,23 @@
+<!--pages/adminChangeEmployeeNumber/adminChangeEmployeeNumber.wxml-->
+<view class="container">
+	<block wx:if="{{employeeNumber}}">
+		<mp-msg type="success" title="修改成功">
+			<view slot="desc">工号:{{employeeNumber}}</view>
+			<view slot="handle">
+				<button class="weui-btn" type="primary" bindtap="back">完成</button>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+		<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+			<mp-cells title="绑定工号">
+				<mp-cell show-error prop="employeeNumber" title="工号">
+					<input bindinput="formInputChange" data-field="employeeNumber" class="weui-input" placeholder="请输入工号" />
+				</mp-cell>
+			</mp-cells>
+		</mp-form>
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+		</view>
+	</block>
+</view>

@@ -1,0 +1,60 @@
+var object = {
+  getStudentSpan:function(studentSignInTimeStr, startTimeStr, endTimeStr){
+    if(studentSignInTimeStr == null){
+      return 0
+    }
+    console.log(studentSignInTimeStr.replace("-", "/").replace("-", "/"))
+    var studentSignInTime =  getDate(studentSignInTimeStr.replace("-", "/").replace("-", "/"))
+    var startTime = getDate(startTimeStr.replace("-", "/").replace("-", "/")) 
+    var endTime = getDate(endTimeStr.replace("-", "/").replace("-", "/"))   
+    if(studentSignInTime.getTime() > startTime.getTime())
+    {
+      var span = Math.ceil((endTime.getTime() - studentSignInTime.getTime())/1000/60)
+      return span
+    } else {
+      var span = Math.ceil((endTime.getTime() - startTime.getTime())/1000/60)
+      return span
+    }
+  },
+  getSpan:function(startTimeStr, endTimeStr){
+    var startTime = getDate(startTimeStr.replace("-", "/").replace("-", "/")) 
+    var endTime = getDate(endTimeStr.replace("-", "/").replace("-", "/"))   
+    var span = Math.ceil((endTime.getTime() - startTime.getTime())/1000/60)
+    return span
+  },
+  getTotal:function(courses, type){
+    var count = 0
+    if(type=='student'){
+      courses.forEach(function(course){
+        if(course.mySignInTime == null){
+          count += 0
+        }
+        var studentSignInTime =  getDate(course.mySignInTime.replace("-", "/").replace("-", "/"))
+        var startTime = getDate(course.startTime.replace("-", "/").replace("-", "/")) 
+        var endTime = getDate(course.endTime.replace("-", "/").replace("-", "/"))   
+        if(studentSignInTime.getTime() > startTime.getTime())
+        {
+          var span = Math.ceil((endTime.getTime() - studentSignInTime.getTime())/1000/60)
+          count +=span
+        } else {
+          var span = Math.ceil((endTime.getTime() - startTime.getTime())/1000/60)
+          count +=span
+        }
+      })
+    } else if(type=='lecturer'){
+      courses.forEach(function(course){
+        var startTime = getDate(course.startTime.replace("-", "/").replace("-", "/")) 
+        var endTime = getDate(course.endTime.replace("-", "/").replace("-", "/"))   
+        var span = Math.ceil((endTime.getTime() - startTime.getTime())/1000/60)
+        count += span
+      })
+    }
+   return count
+  }
+}
+
+module.exports = {
+  getStudentSpan:object.getStudentSpan,
+  getSpan:object.getSpan,
+  getTotal:object.getTotal
+}

@@ -1,0 +1,45 @@
+<!--pages/course/course.wxml-->
+<wxs module="util" src="../../utils/util.wxs"></wxs>
+<mp-cells>
+<mp-cell value="总上课时长{{util.getTotal(courseEnd,type)}}分钟">
+<image slot="icon" src="/images/ic_av_timer_black_48dp.png" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px;"></image>
+</mp-cell>
+</mp-cells>
+<mp-tabs swiperItemClass="container" swiperStyle="height: {{scroll_height}}px" tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper" bindtabclick="onTabCLick" bindchange="onChange" activeClass="tab-bar-title__selected">
+	<view class="tab-content" slot="tab-content-0">
+		<mp-cells>
+			<mp-cell wx:for="{{courseNotStart}}" wx:key="id" footer="{{item.count}}已签到" hover link url="{{url[type]}}?courseId={{item.id}}">
+				<image slot="title" src="{{item.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text class="courseinfo-lecturername">{{item.lecturerName}}</text>
+					<text class="courseinfo-coursename">{{item.name}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+	<view class="tab-content" slot="tab-content-1">
+		<mp-cells>
+			<mp-cell wx:for="{{courseIng}}" wx:key="id" footer="{{item.count}}已签到" hover link url="{{url[type]}}?courseId={{item.id}}">
+				<image slot="title" src="{{item.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text class="courseinfo-lecturername">{{item.lecturerName}}</text>
+					<text class="courseinfo-coursename">{{item.name}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+	<view class="tab-content" slot="tab-content-2">
+		<mp-cells>
+			<mp-cell wx:for="{{courseEnd}}" wx:key="id" footer="{{item.count}}已签到" hover link url="{{url[type]}}?courseId={{item.id}}">
+				<image slot="title" src="{{item.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="courseinfo">
+					<text class="courseinfo-lecturername">{{item.lecturerName}}</text>
+					<text class="courseinfo-coursename">{{item.name}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+	</view>
+
+</mp-tabs>

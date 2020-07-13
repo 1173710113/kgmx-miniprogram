@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<view class="container">
+	<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+	<block wx:else>
+		<mp-cells>
+			<mp-cell>
+				<image slot="icon" bindtap="uploadAvatar" src="{{userInfo.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+				<view class="userinfo-append">
+					<text class="userinfo-nickname" bindtap="changeNickName">{{userInfo.nickName}}</text>
+					<text class="userinfo-employeenumber">{{employeeNumber? employeeNumber:'未设置工号'}}</text>
+				</view>
+				<view slot="footer" bindtap="navigate">
+					<text>{{(level?level:'')+(userType? userTypeMap[userType]:'未设置角色')}}</text>
+				</view>
+			</mp-cell>
+		</mp-cells>
+
+
+		<view class="weui-grids">
+			<block wx:for="{{defaultFunction}}" wx:if="{{userType==='admin' || !employeeNumber}}">
+				<navigator url="{{item.url}}" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; ">
+					<view class="weui-grid__icon">
+						<image class="weui-grid__icon_img" src="{{item.image}}" alt></image>
+					</view>
+					<view class="weui-grid__label">{{item.text}}</view>
+				</navigator>
+			</block>
+
+			<block wx:for="{{userTypeFunction}}" wx:if="{{employeeNumber && (!userType || userType==='admin')}}">
+				<navigator url="{{item.url}}" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; ">
+					<view class="weui-grid__icon">
+						<image class="weui-grid__icon_img" src="{{item.image}}" alt></image>
+					</view>
+					<view class="weui-grid__label">{{item.text}}</view>
+				</navigator>
+			</block>
+
+			<block wx:if="{{userType && userType==='student' && !departmentId}}" wx:for="{{userDepartmentFunction}}">
+				<navigator url="{{item.url}}" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; ">
+					<view class="weui-grid__icon">
+						<image class="weui-grid__icon_img" src="{{item.image}}" alt></image>
+					</view>
+					<view class="weui-grid__label">{{item.text}}</view>
+				</navigator>
+			</block>
+
+			<block wx:if="{{userType && userType==='admin'}}">
+				<navigator wx:for="{{userFunction[userType]}}" url="{{item.url}}" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; ">
+					<view class="weui-grid__icon">
+						<image class="weui-grid__icon_img" src="{{item.image}}" alt></image>
+					</view>
+					<view class="weui-grid__label">{{item.text}}</view>
+				</navigator>
+
+				<view class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; " bindtap="file">
+					<view class="weui-grid__icon">
+						<image class="weui-grid__icon_img" src="/images/ic_equalizer_black_48dp.png" alt></image>
+					</view>
+					<view class="weui-grid__label">数据统计</view>
+				</view>
+			</block>
+			</view>
+
+	<block wx:if="{{userType && userType==='student' && departmentId}}">
+		<view class="weui-grids">
+			<navigator url="/pages/addCourseList/addCourseList" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; padding:0rpx">
+				<image src="/images/tresure_school.jpg" style="height:185rpx;width:299rpx"></image>
+			</navigator>
+			<navigator url="/pages/oneToOneTeacherList/oneToOneTeacherList" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; padding:0rpx">
+				<image src="/images/teacher_online.jpg" style="height:185rpx;width:299rpx"></image>
+			</navigator>
+		</view>
+		<image src="/images/introduction.jpg" style="width:674rpx;margin:38rpx" mode="widthFix"></image>
+	</block>
+
+	<block wx:if="{{userType && userType==='lecturer'}}">
+		<view class="weui-grids">
+				<navigator url="/pages/addCourseForm/addCourseForm" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; padding:0rpx">
+				<image src="/images/tresure_school.jpg" style="height:185rpx;width:299rpx"></image>
+			</navigator>
+			<navigator url="/pages/oneToOneTeacherList/oneToOneTeacherList" class="weui-grid" hover-class="weui-grid_active" style="width:299rpx;margin:38rpx;border:1rpx solid rgba(0,0,0,.1); height:185rpx; padding:0rpx">
+				<image src="/images/teacher_online.jpg" style="height:185rpx;width:299rpx"></image>
+			</navigator>
+		</view>
+			<image src="/images/introduction.jpg" style="width:674rpx;margin:38rpx" mode="widthFix"></image>
+	</block>
+</block>
+	
+</view>

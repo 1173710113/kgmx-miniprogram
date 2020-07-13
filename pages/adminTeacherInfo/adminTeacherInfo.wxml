@@ -1,0 +1,39 @@
+<!--pages/adminTeacherInfo/adminTeacherInfo.wxml-->
+<wxs module="util" src="../../utils/util.wxs"></wxs>
+<view class="container">
+	<mp-cells>
+		<mp-cell value="{{teacher.nickName}}" footer="{{teacher.level+'讲师'}}">
+			<image slot="icon" src="{{teacher.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+		</mp-cell>
+	</mp-cells>
+
+	<mp-cells title="基本信息">
+		<mp-cell>
+			<view style="flex-direction:column;display:flex;">
+				<text>工号:{{teacher.employeeNumber}}</text>
+				<text>简介:{{teacher.brief}}</text>
+			</view>
+		</mp-cell>
+	</mp-cells>
+
+	<mp-cells title="已开课程">
+		<mp-cell wx:for="{{course}}" footer="{{item.startTime?(item.endTime?(util.getSpan(item.startTime, item.endTime)+'分钟'):'进行中'):'未开始'}}" hover link url="/pages/adminCourseInfo/adminCourseInfo?courseId={{item.id}}">
+			<image slot="icon" src="{{item.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+			<view class="courseinfo">
+				<text class="courseinfo-lecturername">{{item.lecturerName}}</text>
+				<text class="courseinfo-coursename">{{item.name}}</text>
+			</view>
+		</mp-cell>
+	</mp-cells>
+
+	<view class="btn-container">
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="edit">修改信息</button>
+		</view>
+	</view>
+	<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{groups}}" title="谨慎修改用户信息">
+	</mp-actionSheet>
+
+  	<mp-actionSheet bindactiontap="levelBtnClick" show="{{showLevelActionsheet}}" actions="{{levelGroups}}" title="谨慎修改用户信息">
+	</mp-actionSheet>
+</view>

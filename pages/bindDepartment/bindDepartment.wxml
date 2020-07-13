@@ -1,0 +1,29 @@
+<!--pages/bindDepartment/bindDepartment.wxml-->
+<view class="container">
+	<block wx:if="{{departmentId}}">
+		<mp-msg type="success" title="已绑定行部">
+			<view slot="desc">行部:{{departmentName}}</view>
+			<view slot="extend">
+				<view>说明：需要更改请联系管理员</view>
+			</view>
+		</mp-msg>
+	</block>
+    <block wx:else>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label" style="padding-left:15rpx">行部</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindCountryChange" value="{{departmentIndex}}" range="{{departments}}" range-key="name">
+                        <view class="weui-select weui-select_in-select-after">{{departments[departmentIndex].name}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="submitForm" data-department="{{departments[departmentIndex]}}">确定</button>
+        </view>
+        </block>
+</view>

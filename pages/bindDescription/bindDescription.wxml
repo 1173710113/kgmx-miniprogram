@@ -1,0 +1,24 @@
+<!--pages/bindDescription/bindDescription.wxml-->
+<view class="container">
+	<block wx:if="{{employeeNumber}}">
+		<mp-msg type="success" title="已绑定工号">
+			<view slot="desc">工号:{{employeeNumber}}</view>
+			<view slot="extend">
+				<view>说明：需要更改请联系管理员</view>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+		<view class="weui-cells__title">个人简介</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea class="weui-textarea" placeholder="请输入个人简介" value="{{description}}" bindinput="bindInputChange" auto-height></textarea>
+				</view>
+			</view>
+		</view>
+		<view class="weui-btn-area">
+			<button type="primary" bindtap="submit">提交</button>
+		</view>
+	</block>
+</view>

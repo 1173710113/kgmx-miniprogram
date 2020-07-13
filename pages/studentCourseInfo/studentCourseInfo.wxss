@@ -1,0 +1,3 @@
+/* pages/studentCourseInfo/studentCourseInfo.wxss */
+
+@import '/pages/course/course.wxss';

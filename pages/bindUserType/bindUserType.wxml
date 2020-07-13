@@ -1,0 +1,28 @@
+<!--pages/bindUserType/bindUserType.wxml-->
+<view class="container">
+	<block wx:if="{{userType}}">
+		<mp-msg type="success" title="已绑定角色">
+			<view slot="desc">角色:{{userTypeMap[userType]}}</view>
+			<view slot="extend">
+				<view>说明：需要更改请联系管理员</view>
+			</view>
+		</mp-msg>
+	</block>
+	<block wx:else>
+		<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+			<mp-cells title="角色">
+				<mp-checkbox-group multi="{{false}}" bindchange="radioChange">
+					<mp-checkbox wx:for="{{radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+				</mp-checkbox-group>
+			</mp-cells>
+			<mp-cells wx:if="{{radioItems[2].checked}}" title="密码">
+				<mp-cell prop="code" title="密码">
+					<input bindinput="formInputChange" password="true" data-field="code" class="weui-input" placeholder="请输入密码" />
+				</mp-cell>
+			</mp-cells>
+		</mp-form>
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+		</view>
+	</block>
+</view>

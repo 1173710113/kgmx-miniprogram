@@ -1,0 +1,43 @@
+<!--pages/courseInfo/courseInfo.wxml-->
+<wxs module="util" src="../../utils/util.wxs"></wxs>
+<view class="container">
+	<mp-cells>
+		<mp-cell footer="{{course.count}}已签到">
+			<image slot="title" src="{{course.lecturerAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+			<view class="courseinfo">
+				<text class="courseinfo-lecturername">{{course.lecturerName}}</text>
+				<text class="courseinfo-coursename">{{course.name}}</text>
+			</view>
+		</mp-cell>
+		<mp-cell>
+			<view class="courseinfo">
+				<text>预定时间:{{course.plannedStartTime}}</text>
+				<text>签到时间:{{course.signInTime}}</text>
+				<text wx:if="{{course.startTime}}">开课时间:{{course.startTime}}</text>
+				<text wx:if="{{course.endTime}}">结束时间:{{course.endTime}}</text>
+				<text wx:if="{{course.endTime}}">课程时长:{{util.getSpan(course.startTime, course.endTime)}}分钟</text>
+
+			</view>
+		</mp-cell>
+	</mp-cells>
+
+	<mp-cells title="学生列表">
+		<mp-cell wx:for="{{student}}">
+			<image slot="icon" src="{{item.studentAvatar}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+			<view slot="footer" style="display:flex;flex-direction:column;">
+				<text>{{item.signInTime? item.signInTime:'未签到'}}</text>
+				<text wx:if="{{course.endTime}}">{{util.getStudentSpan(item.signInTime,course.startTime, course.endTime)}}分钟</text>
+			</view>
+			<view class="courseinfo">
+				<text class="courseinfo-coursename">{{item.studentNickName}}</text>
+				<text class="courseinfo-lecturername">{{item.departmentName}}</text>
+			</view>
+		</mp-cell>
+	</mp-cells>
+
+	<view class="btn-container">
+		<view class="weui-btn-area">
+			<button class="weui-btn" type="primary" disabled="{{course.endTime}}" bindtap="StartOrEndCourse">{{course.endTime? '已结束':(course.startTime? '结束':'开始')}}</button>
+		</view>
+	</view>
+</view>

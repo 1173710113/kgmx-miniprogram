@@ -1,0 +1,8 @@
+<!--pages/oneToOneTeacherList/oneToOneTeacherList.wxml-->
+<view class="container">
+  <mp-cells>
+    <mp-cell wx:for="{{teacher}}" wx:key="id" footer="{{item.level + userTypeMap[item.type]}}" link hover url="/pages/teacherInfo/teacherInfo?id={{item.openId}}" value="{{item.nickName}}">
+      	<image slot="icon" src="{{item.avatarUrl}}" style="margin-right: 16px;vertical-align: middle;width:64px; height: 64px; background-color:#353535;border-radius: 50%;"></image>
+    </mp-cell>
+  </mp-cells>
+</view>
